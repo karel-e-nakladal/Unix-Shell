@@ -9,12 +9,6 @@
 #define INPUT_BUFFER_SIZE 255
 #define PATH_BUFFER_SIZE 255
 
-struct inputTokens{
-    int length;
-    char command[INPUT_BUFFER_SIZE];
-    char* tokens[INPUT_BUFFER_SIZE];
-}typedef InputTokens;
-
 /*
 TODO: CD command
 TODO: Command history
@@ -24,6 +18,13 @@ TODO: remove ctrl+c behavior
 
 TODO: Check if this is the correct way of making a shell
 */
+
+struct inputTokens{
+    int length;
+    char command[INPUT_BUFFER_SIZE];
+    char* tokens[INPUT_BUFFER_SIZE];
+}typedef InputTokens;
+
 
 // INPUT
     void getInput(char* input){
@@ -89,9 +90,9 @@ TODO: Check if this is the correct way of making a shell
         char path[PATH_BUFFER_SIZE];
         getcwd(path, sizeof(char) * PATH_BUFFER_SIZE);
         if(path == NULL){
-            printf("\n$>");
+            printf("$>");
         }else{
-            printf("\n%s>", path);
+            printf("%s>", path);
 
         }
     }
@@ -151,6 +152,8 @@ void execInput(InputTokens* tokens){
     char path[100];
     if(strcmp(tokens->command, "debug") == 0){
         printDebug();
+    }else if(strcmp(tokens->command, "cd") == 0){
+        printf("The change directory (cd) command is not yet implemented\n");
     }else if(commandExists(tokens->command, path)){
         execCommand(tokens);
     }else{
@@ -160,7 +163,7 @@ void execInput(InputTokens* tokens){
 }
 
 
-//
+// MEMORY MANAGEMENT
     void clearTokens(InputTokens* tokens){
         int i = 0;
         while (tokens->tokens[i] != NULL){
