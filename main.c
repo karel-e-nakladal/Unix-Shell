@@ -15,6 +15,15 @@ struct inputTokens{
     char* tokens[INPUT_BUFFER_SIZE];
 }typedef InputTokens;
 
+/*
+TODO: CD command
+TODO: Command history
+TODO: Command completion
+TODO: exit when typed "exit" 
+TODO: remove ctrl+c behavior
+
+TODO: Check if this is the correct way of making a shell
+*/
 
 // INPUT
     void getInput(char* input){
